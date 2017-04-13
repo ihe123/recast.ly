@@ -1,34 +1,17 @@
 
-
-
-// var VideoList = (props) => {
-// // [<VideoListEntry video={props.videos[0]} />]
-
-
-// return(
-//   <div className="video-list media">
- 
-//  { props.videos.map(video => <VideoListEntry video = {video} />)
-//   }
- 
-    
-//   </div>
-//   );
-
-// };
-
 var VideoList = (props) => {
-// [<VideoListEntry video={props.videos[0]} />]
+  console.log(props.something)
+  return(
+    <div className="video-list media">
+      {
 
-
-return(
-  <div className="video-list media">
- 
- { props.videos.map(video => <VideoListEntry video = {video} />)
-  }
- 
-    
-  </div>
+       props.videos.map(video => <VideoListEntry video = {video} something2 = {props.something}/>)
+        // props.videos.map(function(video){
+        //  // (<VideoListEntry video={video} something2 = {props.something})/>)
+        //  // });
+    //console.log(result)
+       }  
+    </div>
   );
 
 };
