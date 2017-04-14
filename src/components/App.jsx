@@ -13,28 +13,39 @@
 class App extends React.Component {
 
   constructor(props){
+
 		super(props);
 		this.state={
 			currentVideo: window.fakeVideoData[0],
-			videoList: window.fakeVideoData,
-		  done:false
+			videoList: window.fakeVideoData
 	  }
     this.onVideoItemClick = this.onVideoItemClick.bind(this);
 	}
+
+	
+		componentDidMount (){
+			this.getYouTubeVideos("cats");
+		}
+
+    getYouTubeVideos (query){
+  	 var obj = {
+				key: this.props.API_KEY,
+				query: query,
+				max: 5
+			}
+			this.props.searchYouTube(obj, function(videos){
+					console.log(videos)
+			},this);
+  }
 	
   onVideoItemClick(video){
-  	console.log(video);
+  	// console.log(video);
 		this.setState({
-
-			currentVideo: video, 
-			done: true	
+			currentVideo: video	
 		});
 	}
 
   render(){
-  	//console.log(this)
-  	//console.log(this.state)
-
 		return (
 			<div>
 		    <Nav />
@@ -43,13 +54,8 @@ class App extends React.Component {
 		    	<VideoPlayer video={this.state.currentVideo}/>
 		    </div>
 
-		    <div className="col-md-5" onClick = {this.onVideoItemClick.bind(this)}>
-
-		
+		    <div className="col-md-5">
 		    	<VideoList videos={this.state.videoList} something={this.onVideoItemClick}/>
-		    
-		    
-
 		    </div>
 
 		  </div>
@@ -62,7 +68,7 @@ class App extends React.Component {
 // `var` declarations will only exist globally where explicitly defined
 window.App = App;
 
-ReactDOM.render(<App  />, document.getElementById("app"));
+// ReactDOM.render(<App  />, document.getElementById("app"));
 
 //<VideoPlayer/> 5
 //  8
